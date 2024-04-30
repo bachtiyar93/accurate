@@ -1,7 +1,9 @@
 import 'package:cpssoft/UI/home/bloc/home_controller.dart';
 import 'package:cpssoft/model/mcity.dart';
+import 'package:cpssoft/model/muser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key, required this.citys});
@@ -12,6 +14,15 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  final _formKey = GlobalKey<FormState>();
+  final _user = {
+    'name': 'Name',
+    'address': 'Address',
+    'email': 'your_mail@mail.com',
+    'phoneNumber': 'Phone',
+    'city': 'City',
+  };
+  late User? newUser;
   final TextEditingController searchController = TextEditingController();
   bool filtered=false;
   String? selectedSort;
@@ -46,7 +57,7 @@ class _SearchState extends State<Search> {
                 child: TextField(
                   controller: searchController,
                   decoration: InputDecoration(
-                    hintText: 'Cari',
+                    hintText: 'Search',
                     hintStyle: const TextStyle(fontSize: 16),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -140,7 +151,80 @@ class _SearchState extends State<Search> {
               ),
             ),
             const SizedBox(width: 10),
-            IconButton(onPressed:(){} ,icon: const Icon(Icons.person_add),)
+            IconButton(onPressed:(){
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('Add New User'),
+                    content: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: _user.keys.map((key) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: TextFormField(
+                              keyboardType:key=='phoneNumber'? TextInputType.phone:TextInputType.name,
+                              decoration: InputDecoration(
+                                hintText: key,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              ),
+                              validator: (value) {
+                                Pattern pattern =
+                                    r'^(?=.{1,64}@)[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,})$';
+                                RegExp regex = RegExp(pattern.toString());
+                                if (value!.isEmpty) {
+                                  return 'Please insert $key';
+                                }else if(key=='email' && !regex.hasMatch(value)){
+                                    return 'Invalid $key';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                _user[key] = value!;
+                              },
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    actions: <Widget>[
+                      MaterialButton(
+                        child: const Text('Cancel'),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      ),
+                      MaterialButton(
+                        child:  const Text('Save'),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+                            setState(() {
+                              newUser=User.fromJson(_user);
+                            });
+                            Get.back();
+                          }
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ).then((value) {
+                if(newUser!=null){
+                  context
+                      .read<HomeBloc>()
+                      .add(AddNewUser(newUser!));
+                  setState(() {
+                    newUser=null;
+                  });
+                }
+              });
+            } ,icon: const Icon(Icons.person_add),)
           ],
         )
       ],

@@ -5,7 +5,9 @@ import 'package:cpssoft/helper/endpoint.dart';
 import 'package:cpssoft/injections/injections.dart';
 import 'package:cpssoft/model/mcity.dart';
 import 'package:cpssoft/model/muser.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -76,8 +78,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
     });
     on<FilterCity>((event, emit) {
-      String no_filter= 'No Filter';
-      if(event.query==no_filter){
+      String noFilter= 'No Filter';
+      if(event.query==noFilter){
         filterCity.clear();
         emit(HomeLoaded(filteredUser,citys));
       }else {
@@ -86,6 +88,43 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             .toList();
         emit(HomeLoaded(filterCity, citys));
       }
+    });
+    on<AddNewUser>((event, emit) async {
+      showDialog(context: Get.context!, builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(0),
+            ),
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+        );
+      }
+      );
+      try {
+        ApiService api = getIt<ApiService>();
+        final responseUsers = await api.create(Endpoint.user, body: jsonEncode(event.user.toJson()));
+        log('body :${jsonEncode(event.user.toJson())} respond: ${responseUsers.statusCode} ${responseUsers.body} ');
+        if (responseUsers.statusCode == 201||responseUsers.statusCode == 200 ) {
+          users.add(event.user);
+          filteredUser= List.from(users);
+          Get.back();
+          Get.snackbar('Saved', 'Success add new User (${responseUsers.statusCode})');
+          emit(HomeLoaded(filteredUser, citys,));
+        } else {
+          log('error failed ${responseUsers.body}');
+        }
+      } catch (e) {
+        log('error $e');
+      }
+      Get.back();
     });
   }
 }

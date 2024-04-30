@@ -20,3 +20,8 @@ class FilterCity extends HomeEvent {
 
   FilterCity(this.query);
 }
+class AddNewUser extends HomeEvent {
+  final User user;
+
+  AddNewUser(this.user);
+}
