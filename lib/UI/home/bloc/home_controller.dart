@@ -26,7 +26,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           final List<dynamic> listUser = jsonDecode(responseUsers.body);
           users = listUser.map((json) => User.fromJson(json)).toList();
           final List<dynamic> listCity = jsonDecode(responseUsers.body);
-          citys = listCity.map((json) => City.fromJson(json)).toList();
+          citys = listCity.map((json) => City.fromJson(json)).toList()
+              .where((element) => element.address==null||element.email==null).toList();
           filteredUser= List.from(users);
           emit(HomeLoaded(filteredUser, citys,));
         } else {
