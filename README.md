@@ -1,10 +1,12 @@
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-05-01 at 04 17 52](https://github.com/bachtiyar93/accurate/assets/37733982/100233c8-a53a-447d-a80d-58990001f2de)# cpssoft
+
 
 Mobile Development Test
 Penulis: Taufiq Nur Bahtiar
 Email: taufiknurbachtiyar@gmail.com
 Phone: 087766226999
 
+
+###############################################
 
 ![Simulator Screenshot - iPhone 15 Pro Max - 2024-05-01 at 04 17 40](https://github.com/bachtiyar93/accurate/assets/37733982/53c66b1f-c420-4eb3-bac7-2ec0eb29af1e)
 
@@ -14,6 +16,7 @@ Phone: 087766226999
 
 ![Simulator Screenshot - iPhone 15 Pro Max - 2024-05-01 at 04 18 04](https://github.com/bachtiyar93/accurate/assets/37733982/d9c8a632-edc7-4d83-96c0-35ae02a09255)
 
+##################################################
 Project Specification:
 SDK Flutter 3.19.5
 DevTools 1.31.1
@@ -30,9 +33,9 @@ Penjelasan Apps:
 1. App terdiri UI Base dan Home
 2. Saat App dibuka akan menampilkan splashscreen 1 detik, dan di alihkan ke route Home.
 3. Pada route Home, AppStarted dipicu untuk mengambil data User dan Kota, selama proses ini disajikan loading screen berupa shimmer.
-4. Setelah mendapatkan data akan disajikan data user, bilah Pencarian, sortir, dan filter kota serta button add user.
-5. Dalam pencarian data user, cukup ketik yang ingin dicari berdasarkan nama kemudian tap icon kaca pembesar dan akan otomatis divalidasi multicase.
-6. Untuk mengembalikan ke data keseluruhan tap icon silang pengganti icon kaca pembesar.
+4. Setelah mendapatkan data akan disajikan data user, bilah Pencarian, sortir, dan filter kota serta button add user pada appBar agar user experince yang didapatkan menyenangkan dan mudah.
+5. Dalam pencarian data user, cukup ketik yang ingin dicari berdasarkan nama kemudian tap icon kaca pembesar dan akan otomatis divalidasi multicase sehingga tidak terpengaruh jenis huruf besar ataupun kecil.
+6. Untuk mengembalikan ke data keseluruhan tap icon silang pengganti icon kaca pembesar, semua data filter dan pencarian akan di clear dan di set ulang.
 7. Sortir dan filter berupa dropdown yang langsung mengeksekusi data setelah filter dipilih.
 8. Untuk menambah data user cukup tap icon add user, akan menampilkan dialog pengisian form kemudian simpan.
 
@@ -51,7 +54,10 @@ Concern:
 1. Bloc adalah state management popular flutter tetapi bukan state management yang ditulis dan di dukung penuh oleh flutter
 2. Bloc memiliki struktur modular tetapi dalam skala besar menyebabkan boilerplate karena banyaknya kode yang sama pada masing masing bloc
 3. Sulitnya melakukan close bloc alih alih tetap menggunakan Stateless justru menggunakan Statefull agar metode dispose dapat dipanggil
-4. Routes Getx memiliki banyak boilerplate dikarenakan GetX itu sendiri adalah state management
+4. Routes Getx memiliki banyak boilerplate dikarenakan GetX itu sendiri adalah state management.
+5. API post mengembalikan statuscode 201 seharusnya 200 secara default dan atau mengembalikan kode validasi tertentu.
+6. City memiliki data user pada output json.
+7. User memiliki json multi string quote pada key query
 
 
 Solusi:
