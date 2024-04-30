@@ -1,9 +1,15 @@
+#CPSSOFT
 
 
 Mobile Development Test
+
 Penulis: Taufiq Nur Bahtiar
+
 Email: taufiknurbachtiyar@gmail.com
+
 Phone: 087766226999
+
+
 
 
 ###############################################
@@ -17,10 +23,15 @@ Phone: 087766226999
 ![Simulator Screenshot - iPhone 15 Pro Max - 2024-05-01 at 04 18 04](https://github.com/bachtiyar93/accurate/assets/37733982/d9c8a632-edc7-4d83-96c0-35ae02a09255)
 
 ##################################################
+
 Project Specification:
+
 SDK Flutter 3.19.5
+
 DevTools 1.31.1
+
 Java OpenJDK 17.0.9
+
 XCode 15
 
 Project Installations:
