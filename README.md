@@ -5,6 +5,18 @@ Penulis: Taufiq Nur Bahtiar
 Email: taufiknurbachtiyar@gmail.com
 Phone: 087766226999
 
+Project Specification:
+SDK Flutter 3.19.5
+DevTools 1.31.1
+Java OpenJDK 17.0.9
+XCode 15
+
+Project Installations:
+1. clone this project url
+2. ketik flutter pub get pada terminal
+3. ketik flutter packages pub run build_runner build --delete-conflicting-outputs pada terminal
+4. ketik flutter run
+
 Penjelasan Apps:
 1. App terdiri UI Base dan Home
 2. Saat App dibuka akan menampilkan splashscreen 1 detik, dan di alihkan ke route Home.
