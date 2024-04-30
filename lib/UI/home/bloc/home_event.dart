@@ -11,7 +11,12 @@ class SearchUser extends HomeEvent {
 }
 class CleanFilter extends HomeEvent {}
 class SortUser extends HomeEvent {
-  final bool ascending;
+  final String sort;
 
-  SortUser(this.ascending);
+  SortUser(this.sort);
+}
+class FilterCity extends HomeEvent {
+  final String query;
+
+  FilterCity(this.query);
 }

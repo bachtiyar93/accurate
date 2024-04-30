@@ -1,8 +1,7 @@
 import 'package:cpssoft/UI/home/bloc/home_controller.dart';
 import 'package:cpssoft/UI/home/card.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cpssoft/UI/home/search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -20,8 +19,15 @@ class Home extends StatelessWidget {
           }
           else if (state is HomeLoaded) {
             return Scaffold(
-              appBar: AppBar(
-                title: Search(),
+              appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(120.0),
+                child: AppBar(
+                  toolbarHeight: 200,
+                  flexibleSpace: Container(
+                      alignment: Alignment.bottomCenter,
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Search(citys: state.citys,)),
+                ),
               ),
               body: state.users.isEmpty?const Center(child: Text('Data is Empty')):ListView.builder(
                   itemCount: state.users.length,
@@ -111,88 +117,6 @@ class Home extends StatelessWidget {
   }
 }
 
-class Search extends StatefulWidget {
-  const Search({super.key});
 
-  @override
-  State<Search> createState() => _SearchState();
-}
-
-class _SearchState extends State<Search> {
-  final TextEditingController searchController = TextEditingController();
-  bool filtered=false;
-
-  @override
-  void dispose() {
-    searchController.dispose();
-    super.dispose();
-  }
-  @override
-  Widget build(BuildContext context) {
-      return  Container(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Flexible(
-                flex: 1,
-                child: Text('Users')),
-            Flexible(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10,bottom: 10,right: 5),
-                child: TextField(
-                  controller: searchController,
-                  decoration: InputDecoration(
-                    hintText: 'Cari',
-                    hintStyle: const TextStyle(fontSize: 16),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 0,
-                        style: BorderStyle.none,
-                      ),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[100],
-                    contentPadding: const EdgeInsets.only(left: 30,),
-                    suffixIcon: MaterialButton(
-                      onPressed: (){
-                        if(filtered ){
-                          searchController.clear();
-                          setState(() {
-                            filtered=false;
-                          });
-                          context
-                              .read<HomeBloc>()
-                              .add(CleanFilter());
-                        }else
-                        {
-                          setState(() {
-                            filtered=true;
-                          });
-                        context
-                            .read<HomeBloc>()
-                            .add(SearchUser(searchController.text));
-                      }
-                    },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 3.0, left: 5.0),
-                        child: Icon(
-                          filtered?Icons.close:Icons.search,
-                          color: Colors.black,
-                          size: 24,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-  }
-}
 
 

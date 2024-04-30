@@ -1,4 +1,4 @@
-import 'package:cpssoft/model/Muser.dart';
+import 'package:cpssoft/model/muser.dart';
 import 'package:flutter/material.dart';
 
 class CardUser extends StatelessWidget {
@@ -22,7 +22,7 @@ class CardUser extends StatelessWidget {
             child: Row(
               children: [
                 const Icon(Icons.person),
-                Text(" :${user.name![1].toUpperCase()}${user.name!.substring(2,user.name!.length).toLowerCase()}  "),
+                Text(" :${user.name!.toUpperCase()}"),
               ],
             ),
           ),
