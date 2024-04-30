@@ -6,10 +6,10 @@ abstract class HomeEvent {}
 class LoadUser extends HomeEvent {}
 class SearchUser extends HomeEvent {
   final String query;
-  final String city;
 
-  SearchUser(this.query, this.city);
+  SearchUser(this.query);
 }
+class CleanFilter extends HomeEvent {}
 class SortUser extends HomeEvent {
   final bool ascending;
 
