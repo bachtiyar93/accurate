@@ -1,9 +1,12 @@
 import 'package:cpssoft/UI/base/base.dart';
 import 'package:cpssoft/UI/home/home.dart';
+import 'package:cpssoft/injections/injections.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:injectable/injectable.dart';
 
 void main() {
+  configureDependencies(Environment.prod);
   runApp(const MyApp());
 }
 
