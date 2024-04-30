@@ -1,7 +1,10 @@
 import 'package:cpssoft/UI/home/bloc/home_controller.dart';
 import 'package:cpssoft/UI/home/card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 class Home extends StatelessWidget {
@@ -18,11 +21,10 @@ class Home extends StatelessWidget {
           }
           else if (state is HomeLoaded) {
             return Scaffold(
-              body: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                      childAspectRatio: 5/4
-                  ),
+              appBar: AppBar(
+                title: search(),
+              ),
+              body: ListView.builder(
                   itemCount: state.users.length,
                   itemBuilder: (context, index)  =>CardUser(user: state.users[index]),
               ),
@@ -105,6 +107,50 @@ class Home extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  search() {
+    return  Container(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Flexible(
+              flex: 1,
+              child: Text('Users')),
+          Flexible(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Cari',
+                  hintStyle: const TextStyle(fontSize: 16),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(
+                      width: 0,
+                      style: BorderStyle.none,
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: Colors.grey[100],
+                  contentPadding: const EdgeInsets.only(left: 30,),
+                  suffixIcon: const Padding(
+                    padding: EdgeInsets.only(right: 24.0, left: 16.0),
+                    child: Icon(
+                      Icons.search,
+                      color: Colors.black,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

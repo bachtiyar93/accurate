@@ -10,49 +10,52 @@ class CardUser extends StatelessWidget {
     return  Container(
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.all(8),
-      child: Row(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(width: 1,color: Colors.black)
+      ),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const SizedBox(
-            width: 48.0,
-            height: 48.0,
-            child: Icon(Icons.person),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: double.infinity,
-                  child: Text(user.name??''),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 2.0),
-                ),
-                Container(
-                  width: double.infinity,
-                  child: Text('${user.address}, ${user.city}'),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 2.0),
-                ),
-                Container(
-                  width: double.infinity,
-                  child: Text(user.phoneNumber??''),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 2.0),
-                ),
-                Container(
-                  width: double.infinity,
-                  child: Text(user.email??''),
-                ),
+          SizedBox(
+            width: double.infinity,
+            child: Row(
+              children: [
+                const Icon(Icons.person),
+                Text(" :${user.name![1].toUpperCase()}${user.name!.substring(2,user.name!.length).toLowerCase()}  "),
               ],
             ),
-          )
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.0),
+          ),
+          Row(
+            children: [
+              const Icon(Icons.home),
+              Text(' :${user.address}, ${user.city}'),
+            ],
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.0),
+          ),
+          SizedBox(
+            width: double.infinity,
+            child: Row(
+              children: [
+                const Icon(Icons.call),
+                Text(" :${user.phoneNumber}  "),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: double.infinity,
+            child: Row(
+              children: [
+                const Icon(Icons.email),
+                Text(" :${user.email}"),
+              ],
+            ),
+          ),
         ],
       ),
     );
