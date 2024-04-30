@@ -32,7 +32,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           final List<dynamic> listCity = jsonDecode(responseCity.body);
           citys = listCity.map((json) => City.fromJson(json)).toList()
               .where((element) => element.address==null||element.email==null).toList();
-          log('total citys ${citys.length}');
           filteredUser= List.from(users);
           emit(HomeLoaded(filteredUser, citys,));
         } else {
@@ -43,12 +42,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
     });
     on<SearchUser>((event, emit) {
-      log('search ${event.query}');
       if(event.query!='') {
         filteredUser = users
             .where((user) => user.name!.contains(event.query))
             .toList();
-        log('get data ${filteredUser.length}');
         emit(HomeLoaded(filteredUser,citys));
       }else{
         filteredUser.clear();
