@@ -1,4 +1,5 @@
 import 'package:cpssoft/UI/base/base.dart';
+import 'package:cpssoft/UI/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Main.base,
       getPages: [
         GetPage(name: Main.base, page: ()=>const Base()),
+        GetPage(name: Main.home, page: ()=>const Home()),
       ],
     );
   }
@@ -29,5 +31,5 @@ class MyApp extends StatelessWidget {
 class Main {
   static String base = '/';
 
-  static String home = '/';
+  static String home = '/home';
 }
