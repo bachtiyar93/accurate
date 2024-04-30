@@ -1,9 +1,18 @@
-# cpssoft
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-05-01 at 04 17 52](https://github.com/bachtiyar93/accurate/assets/37733982/100233c8-a53a-447d-a80d-58990001f2de)# cpssoft
 
 Mobile Development Test
 Penulis: Taufiq Nur Bahtiar
 Email: taufiknurbachtiyar@gmail.com
 Phone: 087766226999
+
+
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-05-01 at 04 17 40](https://github.com/bachtiyar93/accurate/assets/37733982/53c66b1f-c420-4eb3-bac7-2ec0eb29af1e)
+
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-05-01 at 04 17 52](https://github.com/bachtiyar93/accurate/assets/37733982/4cdd8c4c-c5c6-467f-9d1d-eae8aa472fdc)
+
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-05-01 at 04 16 39](https://github.com/bachtiyar93/accurate/assets/37733982/476ba625-a60d-4c30-b276-c86631353585)
+
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-05-01 at 04 18 04](https://github.com/bachtiyar93/accurate/assets/37733982/d9c8a632-edc7-4d83-96c0-35ae02a09255)
 
 Project Specification:
 SDK Flutter 3.19.5
@@ -28,8 +37,7 @@ Penjelasan Apps:
 8. Untuk menambah data user cukup tap icon add user, akan menampilkan dialog pengisian form kemudian simpan.
 
 Penjelasan Struktur Apps
-1. Base adalah component initstate yang dapat diisi berbagai keperluan inisiasi data, dalam kasus ini UI seharusnya sama dengan Native Splashscreen,
-    dalam project ini native splashscreen belum diterapkan seharusnya berada di runner (ios) dan res (android)
+1. Base adalah component initstate yang dapat diisi berbagai keperluan inisiasi data, dalam kasus ini UI seharusnya sama dengan Native Splashscreen, dalam project ini native splashscreen belum diterapkan seharusnya berada di runner (ios) dan res (android)
 2. Base seharusnya bergantung pada banyaknya dan lamanya inisiasi data, namun agar base terlihat disini dibuat delay 1 detik.
 3. UI selalu berada pada struktur folde lib/UI
 4. Dalam kasus penggunaan bloc, controller bloc berada pada masing masing UI agar tidak menyebebkan kebingungan
@@ -48,8 +56,6 @@ Concern:
 
 Solusi:
 1. Menggunakan state management official agar tidak mengalami masalah perubahan kode yang significant (kasus bloc saat flutter null safety)
-2. Menggnukan state management dengan dukungan MultiProvider ini sangat kuat untuk flutter MultiProvider itu sendiri dapat digabung dengan blco, getX, riverpod ataupun provider
+2. Menggnukan state management dengan dukungan MultiProvider ini sangat kuat untuk flutter MultiProvider itu sendiri dapat digabung dengan bloc, getX, riverpod ataupun provider
 3. Menggunakkan state yang memiliki  ChangeNotifierProvider (CNP), CNP memiliki kemampuan dispose otomatis sehingga minim kebocoran memory
 4. Alih alih menggunakan getX, MaterialApp sendiri memiliki kelas routes bawaan yang fungsi dan penggunaanya sama dengan autoroutes ataupun getX itu sendiri.
-
-
